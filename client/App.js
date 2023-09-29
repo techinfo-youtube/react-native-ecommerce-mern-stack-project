@@ -19,7 +19,7 @@ export default function App() {
             headerShown: false,
           }}
         />
-        <Stack.Screen name="about" component={About} />
+        <Stack.Screen name="mobile" component={About} />
       </Stack.Navigator>
     </NavigationContainer>
   );
