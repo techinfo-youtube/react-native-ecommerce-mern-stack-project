@@ -1,14 +1,15 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 const Footer = () => {
   const route = useRoute();
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.menuContainer}
-        onPress={() => alert("Home Page")}
+        onPress={() => navigation.navigate("home")}
       >
         <AntDesign
           style={[styles.icon, route.name === "home" && styles.active]}
@@ -37,7 +38,7 @@ const Footer = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.menuContainer}
-        onPress={() => alert("ACCOUNT Page")}
+        onPress={() => navigation.navigate("account")}
       >
         <AntDesign
           style={[styles.icon, route.name === "account" && styles.active]}
@@ -51,7 +52,7 @@ const Footer = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.menuContainer}
-        onPress={() => alert("Cart Page")}
+        onPress={() => navigation.navigate("cart")}
       >
         <AntDesign
           style={[styles.icon, route.name === "cart" && styles.active]}
@@ -63,7 +64,9 @@ const Footer = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.menuContainer}
-        onPress={() => alert("Logout Page")}
+        onPress={() => {
+          alert("Logout Successfully"), navigation.navigate("login");
+        }}
       >
         <AntDesign style={styles.icon} name="logout" />
         <Text style={styles.iconText}>Logout</Text>
