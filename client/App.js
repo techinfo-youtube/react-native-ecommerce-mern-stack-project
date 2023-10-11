@@ -13,6 +13,7 @@ import Register from "./screens/auth/Register";
 import Account from "./screens/Account/Account";
 import Notifications from "./screens/Account/Notifications";
 import Profile from "./screens/Account/Profile";
+import MyOrders from "./screens/Account/MyOrders";
 
 //routes
 const Stack = createNativeStackNavigator();
@@ -30,6 +31,7 @@ export default function App() {
         />
         <Stack.Screen name="productDetails" component={ProductDetails} />
         <Stack.Screen name="checkout" component={Checkout} />
+        <Stack.Screen name="myorders" component={MyOrders} />
         <Stack.Screen name="profile" component={Profile} />
         <Stack.Screen name="notifications" component={Notifications} />
         <Stack.Screen
