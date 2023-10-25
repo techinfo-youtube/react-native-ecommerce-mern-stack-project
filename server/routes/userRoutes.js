@@ -4,6 +4,7 @@ import {
   loginController,
   logoutController,
   registerController,
+  udpatePasswordController,
   updateProfileController,
 } from "../controllers/userController.js";
 import { isAuth } from "../middlewares/authMiddleware.js";
@@ -23,6 +24,12 @@ router.get("/profile", isAuth, getUserProfileController);
 
 //logout
 router.get("/logout", isAuth, logoutController);
+
+// uopdate profile
+router.put("/profile-update", isAuth, updateProfileController);
+
+// updte password
+router.put("/update-password", isAuth, udpatePasswordController);
 
 //export
 export default router;
