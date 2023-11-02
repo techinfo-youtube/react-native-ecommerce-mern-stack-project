@@ -14,6 +14,8 @@ import { singleUpload } from "../middlewares/multer.js";
 const router = express.Router();
 
 //rroutes
+// ============== PRODUCT ROUTES ==================
+
 // GET ALL PRODUCTS
 router.get("/get-all", getAllProductsController);
 
@@ -34,5 +36,6 @@ router.delete("/delete-image/:id", isAuth, deleteProductImageController);
 
 // delete product
 router.delete("/delete/:id", isAuth, deleteProductController);
+// ====================================================================
 
 export default router;

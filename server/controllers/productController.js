@@ -289,3 +289,5 @@ export const deleteProductController = async (req, res) => {
     });
   }
 };
+
+// ========== PRODUCT CTRL ENDS ================
