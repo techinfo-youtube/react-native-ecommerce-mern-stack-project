@@ -1,5 +1,29 @@
 import mongoose from "mongoose";
 
+// REVIEW MODAL
+const reviewSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "name is require"],
+    },
+    rating: {
+      type: Number,
+      default: 0,
+    },
+    comment: {
+      type: String,
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
+      required: [true, "user require"],
+    },
+  },
+  { timestamps: true }
+);
+
+// PROCUCT MODAL
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -32,6 +56,15 @@ const productSchema = new mongoose.Schema(
         url: String,
       },
     ],
+    reviews: [reviewSchema],
+    rating: {
+      type: Number,
+      default: 0,
+    },
+    numReviews: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
