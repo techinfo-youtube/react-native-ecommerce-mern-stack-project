@@ -12,6 +12,7 @@ import InputBox from "../../components/Form/InputBox";
 //redux hooks
 import { login } from "../../redux/features/auth/userActions";
 import { useDispatch, useSelector } from "react-redux";
+import { useReduxStateHook } from "../../hooks/customeHook";
 const Login = ({ navigation }) => {
   const loginImage = "https://fishcopfed.coop/images/login.png";
   const [email, setEamil] = useState("");
@@ -19,7 +20,8 @@ const Login = ({ navigation }) => {
   // hooks
   const dispatch = useDispatch();
   // global state
-  const { loading, error, message } = useSelector((state) => state.user);
+
+  const loading = useReduxStateHook(navigation, "home");
 
   // login function
   const handleLogin = () => {
@@ -29,22 +31,10 @@ const Login = ({ navigation }) => {
     dispatch(login(email, password));
   };
 
-  // life cylce
-  useEffect(() => {
-    if (error) {
-      alert(error);
-      dispatch({ type: "clearError" });
-    }
-    if (message) {
-      alert(message);
-      dispatch({ type: "clearMessage" });
-      navigation.navigate("home");
-    }
-  }, [error, message, dispatch]);
   return (
     <View style={styles.container}>
       <Image source={{ uri: loginImage }} style={styles.image} />
-
+      {loading && <Text>loading ...</Text>}
       <InputBox
         placeholder={"Enter You Email"}
         value={email}

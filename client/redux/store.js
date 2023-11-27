@@ -8,4 +8,4 @@ export default configureStore({
 });
 
 // HOST
-export const server = "http://192.168.58.7:8080/api/v1";
+export const server = "https://combative-cod-life-jacket.cyclic.app/api/v1";
