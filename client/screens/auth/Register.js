@@ -1,24 +1,43 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import InputBox from "../../components/Form/InputBox";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/features/auth/userActions";
+import { useReduxStateHook } from "./../../hooks/customeHook";
 
 const Register = ({ navigation }) => {
+  const dispatch = useDispatch();
+
   const loginImage = "https://fishcopfed.coop/images/login.png";
   const [email, setEamil] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
-  const [contact, setContact] = useState("");
+  const [phone, setPhone] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [country, setCountry] = useState("india");
 
   // login function
   const handleRegister = () => {
-    if (!email || !password || !name || !address || !city || !contact) {
-      return alert("Please provide all fields");
+    // validation
+    if (!email || !password || !name || !address || !city || !phone) {
+      return alert("Please provide all fields client side");
     }
-    alert("register Successfully");
-    navigation.navigate("login");
+    const formData = {
+      email,
+      password,
+      name,
+      address,
+      city,
+      phone,
+      answer,
+      country: "India",
+    };
+    dispatch(register(formData));
+    // navigation.navigate("/login");
   };
+  const loading = useReduxStateHook(navigation, "login");
   return (
     <View style={styles.container}>
       <Image source={{ uri: loginImage }} style={styles.image} />
@@ -55,9 +74,15 @@ const Register = ({ navigation }) => {
       />
       <InputBox
         placeholder={"Enter You contact no"}
-        value={contact}
-        setValue={setContact}
-        autoComplete={"tel"}
+        value={phone}
+        setValue={setPhone}
+        autoComplete={"name"}
+      />
+      <InputBox
+        placeholder={"Enter You favrite dish"}
+        value={answer}
+        setValue={setAnswer}
+        autoComplete={"name"}
       />
       <View style={styles.btnContainer}>
         <TouchableOpacity style={styles.loginBtn} onPress={handleRegister}>
@@ -67,7 +92,7 @@ const Register = ({ navigation }) => {
           Alredy a user please ?{"  "}
           <Text
             style={styles.link}
-            onPress={() => navigation.navigate("register")}
+            onPress={() => navigation.navigate("login")}
           >
             login !
           </Text>

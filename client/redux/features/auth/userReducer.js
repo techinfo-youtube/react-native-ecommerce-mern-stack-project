@@ -1,14 +1,15 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-export const userReducer = createReducer({}, (builder) => {
+export const userReducer = createReducer({ token: null }, (builder) => {
   // LOGIN CASE
   builder.addCase("loginRequest", (state, action) => {
     state.loading = true;
   });
   builder.addCase("logingSucess", (state, action) => {
     state.loading = false;
-    state.message = action.payload;
+    state.message = action.payload.message;
     state.isAuth = true;
+    state.token = action.payload.token;
   });
   builder.addCase("loginFail", (state, action) => {
     state.isAuth = false;
@@ -20,6 +21,19 @@ export const userReducer = createReducer({}, (builder) => {
   });
   builder.addCase("clearMessage", (state) => {
     state.message = null;
+  });
+  //REGISTER
+  builder.addCase("registerRequest", (state, action) => {
+    state.loading = true;
+  });
+  builder.addCase("registerSucess", (state, action) => {
+    state.loading = false;
+    // state.isAuth = true;
+    state.message = action.payload;
+  });
+  builder.addCase("registerFail", (state, action) => {
+    state.isAuth = false;
+    state.error = action.payload;
   });
   //  GET USER DATA
   builder.addCase("getUserDataRequest", (state, action) => {
@@ -34,7 +48,6 @@ export const userReducer = createReducer({}, (builder) => {
     state.isAuth = false;
     state.error = action.payload;
   });
-
   // LOGOUT
   builder.addCase("logoutRequest", (state, action) => {
     state.loading = true;

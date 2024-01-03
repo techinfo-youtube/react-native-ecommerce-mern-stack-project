@@ -10,7 +10,6 @@ import { getUserData } from "../redux/features/auth/userActions";
 
 const Home = () => {
   const disptach = useDispatch();
-  const { isAuth } = useSelector((state) => state.user);
 
   useEffect(() => {
     disptach(getUserData());
